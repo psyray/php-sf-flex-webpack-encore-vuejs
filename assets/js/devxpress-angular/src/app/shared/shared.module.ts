@@ -6,6 +6,7 @@ import {DevExtremeModule} from "devextreme-angular";
 import {WizardListAuthorsComponent} from "./wizard-list-authors/wizard-list-authors.component";
 import {WizardListEditorsComponent} from "./wizard-list-editors/wizard-list-editors.component";
 import {CommonModule} from "@angular/common";
+import {SharedWorkerService} from "./services/shared-worker";
 
 @NgModule({
     imports: [
@@ -25,6 +26,7 @@ import {CommonModule} from "@angular/common";
         WizardSumupComponent
     ],
     providers: [
+        SharedWorkerService,
         WizardRouting,
         WizardBook
     ]

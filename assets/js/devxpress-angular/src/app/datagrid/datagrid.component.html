@@ -5,12 +5,19 @@
         [showRowLines]="true"
         [showBorders]="true"
         [rowAlternationEnabled]="true"
-        [allowColumnReordering]="true">
+        [allowColumnReordering]="true"
+        (onSelectionChanged)="getSelectedRow($event)">
     <dxi-column dataField="id" caption="Id" [width]="50"></dxi-column>
     <dxi-column dataField="title" caption="Titre"></dxi-column>
     <dxi-column dataField="indexInSerie" caption="Index" [width]="50" [allowSorting]=false></dxi-column>
     <dxi-column dataField="authors" caption="Auteurs" [width]="65" [allowSorting]=false cellTemplate="countTemplate"></dxi-column>
     <dxi-column dataField="editors" caption="Editions" [width]="65" [allowSorting]=false cellTemplate="countTemplate"></dxi-column>
+    <dxi-column caption="Detail"><dx-button
+            icon="find"
+            type="info"
+            text="detail"
+            (onClick)="openDetail()">
+    </dx-button></dxi-column>
     <dxo-remote-operations
             [sorting]="true"
             [paging]="true">
@@ -18,7 +25,7 @@
     <dxo-state-storing [enabled]="true" type="localStorage" storageKey="storage"></dxo-state-storing>
     <dxo-sorting mode="multiple"></dxo-sorting>
     <dxo-export [enabled]="true" fileName="Books" [allowExportSelectedData]="true"></dxo-export>
-    <dxo-selection mode="multiple"></dxo-selection>
+    <dxo-selection mode="single"></dxo-selection>
     <dxo-editing
             mode="row"
             [allowUpdating]="true"

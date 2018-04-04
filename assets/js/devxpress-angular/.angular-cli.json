@@ -10,6 +10,7 @@
       "assets": [
         "assets",
         "favicon.ico",
+        "tools/shared-worker.js",
         {
           "glob": "**/*",
           "input": "../node_modules/devextreme/dist/css/"
