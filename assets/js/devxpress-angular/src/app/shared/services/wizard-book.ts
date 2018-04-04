@@ -103,9 +103,35 @@ export class WizardBook {
         return res
     }
 
+    /**
+     *
+     * @returns {this}
+     */
     reset() {
         const book = new Book()
 
         this._book.next(book)
+
+        return this
+    }
+
+    /**
+     *
+     * @param {number} id
+     * @returns {Subject<any>}
+     */
+    get(id: number) {
+        const res = new Subject()
+
+        this.api
+            .get(`/books/${id}`)
+            .subscribe((book) => {
+                this._book.next(book)
+                res.next(book)
+            }, err => {
+                res.error(err)
+            })
+
+        return res
     }
 }

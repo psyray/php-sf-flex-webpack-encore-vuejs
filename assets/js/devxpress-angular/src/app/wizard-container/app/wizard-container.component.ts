@@ -1,8 +1,8 @@
 import {Component, OnDestroy, OnInit} from '@angular/core'
-import {WizardRouting} from "../services/wizard-routing";
+import {WizardRouting} from "../../shared/services/wizard-routing";
 import {ActivatedRoute, Router, Routes, UrlSegment} from "@angular/router";
 import {wizardRoutes} from "../wizard.routes";
-import {WizardBook} from "../services/wizard-book";
+import {WizardBook} from "../../shared/services/wizard-book";
 import {CacheKey} from "../enums/cache-key";
 import {Book} from "../../../entities/library/book";
 import {Subscription} from "rxjs/Subscription";
