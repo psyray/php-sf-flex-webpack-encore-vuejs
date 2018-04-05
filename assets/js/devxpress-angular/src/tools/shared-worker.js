@@ -26,16 +26,28 @@ self.addEventListener("connect", function (e) {
             console.error('no id defined in message')
             return
         }
+        const targetClient = clients.find(client => client.id === data.id)
+        const otherClients = clients.filter(client => client.id !== data.id)
 
-        switch(data.type) {
+        switch(data.cmd) {
             case "ping":
-                const client = clients.find(client => client.id === data.id)
-                if (client) {
+                // response only for the caller
+                if (targetClient) {
                     data.message = "pong"
-                    client.port.postMessage(data)
-                } else {
-                    data.message = `unknown client ${client.id}`
+                    targetClient.port.postMessage(data)
+                } else { // or for all clients if no id found
+                    data.message = `unknown client ${data.id}`
                     broadcast(clients, data)
+                }
+                break
+            case "hello":
+                // response only for the caller
+                if (!otherClients || !otherClients.length) {
+                    data.message = "hello: no other clients to say hello"
+                    targetClient.port.postMessage(data)
+                } else { // or for all clients if no id found
+                    data.message = `unknown client ${client.id}`
+                    broadcast(otherClients, data)
                 }
                 break
             default:
@@ -47,6 +59,6 @@ self.addEventListener("connect", function (e) {
     // should we move it at bottom or at top ?
     port.start();
 
-    broadcast(clients, {"id":nextId, "cmd": "connected"});
+    broadcast(clients, {"id": nextId, "cmd": "connected"});
 
 }, false)

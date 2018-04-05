@@ -15,6 +15,7 @@ export class SharedWorkerService {
     message: Observable<any> = this._message.asObservable().filter(value => Boolean(value))
 
     constructor() {
+        console.info('SharedWorkerService', 'constructor')
         this.worker = new SharedWorker("/dist-ng/devxpress/tools/shared-worker.js", "second-screen")
         this.connect()
     }
@@ -28,8 +29,10 @@ export class SharedWorkerService {
      * @returns {Subject<any>}
      */
     protected connect(): void {
+        console.info('SharedWorkerService', 'connect')
         let id = null;
         this.worker.port.addEventListener("message", e => {
+            console.info('SharedWorkerService', 'connect', 'message received', e)
             const data = e.data
 
             if (!data
@@ -54,7 +57,22 @@ export class SharedWorkerService {
     }
 
     ping() {
-        const message = {id: this._id.getValue(), type: "ping", message: "whatever"}
+        const message = {cmd: "ping", message: "whatever"}
+        this.posMessage(message)
+    }
+
+    sayHello() {
+        const message = {cmd: "hello", message: "whatever"}
+        this.posMessage(message)
+    }
+
+    private posMessage(message: {cmd: string, message: string}) {
+        message['id'] = this._id.getValue()
+
+        if (!message['id'] && message['id'] !== 0) {
+            throw new Error('Cannot send message, missing client id')
+        }
+
         this.worker.port.postMessage(message)
     }
 }

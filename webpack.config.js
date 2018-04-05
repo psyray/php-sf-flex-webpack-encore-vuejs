@@ -1,5 +1,4 @@
 var Encore = require('@symfony/webpack-encore')
-var OfflinePlugin = require('offline-plugin')
 
 Encore
     // the project directory where compiled assets will be stored
@@ -82,31 +81,31 @@ Encore
 // customize webpack configuration
 let config = Encore.getWebpackConfig();
 
-// https://github.com/NekR/offline-plugin
-config.plugins.push(new OfflinePlugin({
-    "strategy": "changed",
-    "responseStrategy": "cache-first",
-    "publicPath": "/dist/",
-    "caches": {
-        // offline plugin doesn't know about build folder
-        // if I added build in it , it will show something like : OfflinePlugin: Cache pattern [build/images/*] did not match any assets
-        "main": [
-            '*.json',
-            '*.css',
-            '*.js',
-            'img/*'
-        ]
-    },
-    "ServiceWorker": {
-        "events": !Encore.isProduction(),
-        "entry": "./assets/js/lib/service-worker.js",
-        "cacheName": "SymfonyVue",
-        "navigateFallbackURL": '/',
-        "minify": !Encore.isProduction(),
-        "output": "./../service-worker.js",
-        "scope": "/"
-    },
-    "AppCache": null
-}));
+// // https://github.com/NekR/offline-plugin
+// config.plugins.push(new OfflinePlugin({
+//     "strategy": "changed",
+//     "responseStrategy": "cache-first",
+//     "publicPath": "/dist/",
+//     "caches": {
+//         // offline plugin doesn't know about build folder
+//         // if I added build in it , it will show something like : OfflinePlugin: Cache pattern [build/images/*] did not match any assets
+//         "main": [
+//             '*.json',
+//             '*.css',
+//             '*.js',
+//             'img/*'
+//         ]
+//     },
+//     "ServiceWorker": {
+//         "events": !Encore.isProduction(),
+//         "entry": "./assets/js/lib/service-worker.js",
+//         "cacheName": "SymfonyVue",
+//         "navigateFallbackURL": '/',
+//         "minify": !Encore.isProduction(),
+//         "output": "./../service-worker.js",
+//         "scope": "/"
+//     },
+//     "AppCache": null
+// }));
 
 module.exports = config
