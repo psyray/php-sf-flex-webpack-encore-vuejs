@@ -41,7 +41,9 @@ Encore
     })
 
     // uncomment to define the assets of the project
-    .addEntry('service-worker', './assets/js/lib/service-worker.js')
+
+    // this one was used for this npm package: offline-plugin to manage cache (angular has already its own worker since ng-5.2 & cli-1.6)
+    // .addEntry('service-worker', './assets/js/lib/service-worker.js')
 
     .addEntry('js/vuejs', './assets/js/vuejs/app.js')
     .addEntry('js/quasar', './assets/js/quasar/app.js')

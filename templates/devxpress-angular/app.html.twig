@@ -48,7 +48,6 @@
 <link rel="preload" href="{{ asset("dist-ng/devxpress/main.bundle.js") }}" as="script"/>
 <link rel="preload" href="{{ asset('dist/manifest.js') }}" as="script"/>
 <link rel="preload" href="{{ asset("dist/vendor.js") }}" as="script"/>
-<link rel="preload" href="{{ asset("dist/service-worker.js") }}" as="script"/>
 {% endblock %}
 
 {% block body %}
@@ -61,5 +60,4 @@
     <script type="text/javascript" src="/dist-ng/devxpress/polyfills.bundle.js"></script><!-- generate Zone already loaded. Error -->
     <script type="text/javascript" src="/dist-ng/devxpress/vendor.bundle.js"></script>
     <script type="text/javascript" src="/dist-ng/devxpress/main.bundle.js"></script>
-    <script type="text/javascript" src="/dist/service-worker.js"></script>
 {%  endblock %}
