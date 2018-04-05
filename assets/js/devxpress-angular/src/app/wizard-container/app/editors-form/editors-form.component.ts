@@ -24,7 +24,7 @@ export class EditorsFormComponent implements OnInit, OnDestroy {
     options = options
 
     protected apiConfig
-    protected dataSource: any = {}
+    public dataSource: any = {}
 
     // pattern to unsubscribe everything
     protected subscriptions: Array<Subscription> = []

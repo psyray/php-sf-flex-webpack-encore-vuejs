@@ -22,7 +22,7 @@ import {SharedModule} from "./shared/shared.module";
   imports: [
     RouterModule.forRoot(
         appRoutes,
-        { enableTracing: true }// debugging purposes only
+        { enableTracing: false }// debugging purposes only
     ),
     BrowserModule,
     HttpClientModule,

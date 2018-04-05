@@ -27,8 +27,8 @@ export class DatagridComponent implements OnInit {
       window: undefined,
       url: ''
   }
-  protected apiConfig
-  protected dataSource: any = {}
+  public apiConfig
+  public dataSource: any = {}
 
   constructor(private api: ApiService, private sharedWorker: SharedWorkerService) {
       this.apiConfig = apiConfig

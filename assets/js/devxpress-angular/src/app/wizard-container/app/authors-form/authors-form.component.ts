@@ -27,8 +27,8 @@ export class AuthorsFormComponent implements OnInit, OnDestroy {
     options = options
 
     protected apiConfig
-    protected authorsDatasource: any = {}
-    protected jobDatasource: any = {}
+    public authorsDatasource: any = {}
+    public jobDatasource: any = {}
 
     // pattern to unsubscribe everything
     protected subscriptions: Array<Subscription> = []
