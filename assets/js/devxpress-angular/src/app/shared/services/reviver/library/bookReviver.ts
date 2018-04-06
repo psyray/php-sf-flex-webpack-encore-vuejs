@@ -1,10 +1,12 @@
-import {Book} from "../../entities/library/book"
+import {Book} from "../../../../../entities/library/book"
 import {ItemAbstractReviver} from "@rebolon/json-reviver/src";
 import {AuthorsReviver} from "./authorsReviver";
 import {SerieReviver} from "./serieReviver";
 import {EditorsReviver} from "./editorsReviver";
 import {Accessor} from "@rebolon/json-reviver/src/accessor";
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class BookReviver extends ItemAbstractReviver
 {
     /**

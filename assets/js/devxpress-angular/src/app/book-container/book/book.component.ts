@@ -6,8 +6,8 @@ import 'rxjs/add/operator/toPromise';
 import 'rxjs/add/operator/takeUntil'
 import {ActivatedRoute} from "@angular/router";
 import {WizardBook} from "../../shared/services/wizard-book";
-import {SharedWorkerService} from "../../shared/services/shared-worker";
 import notify from "devextreme/ui/notify";
+import {BroadcastChannelApi} from "../../shared/services/broadcast-channel-api";
 
 @Component({
   selector: 'my-book',
@@ -18,11 +18,9 @@ export class BookComponent implements OnInit, OnDestroy {
     protected ngUnsubscribe: Subject<void> = new Subject()
     protected book: BookModel
 
-  constructor(private route: ActivatedRoute, private bookService: WizardBook, private sharedWorker: SharedWorkerService) {}
+  constructor(private route: ActivatedRoute, private bookService: WizardBook, private broadcastChannel: BroadcastChannelApi) {}
 
   ngOnInit(): void {
-      this.sharedWorker.id.subscribe(id => console.info('my id is ', id))
-
       // Observe the params from activatedRoute AND then load the story
       this.route.paramMap
           .takeUntil(this.ngUnsubscribe)
@@ -46,10 +44,10 @@ export class BookComponent implements OnInit, OnDestroy {
   }
 
   sendMessage(){
-        this.sharedWorker.message.subscribe(msg => {
+        this.broadcastChannel.message.subscribe(msg => {
             console.info('message received', msg)
         })
 
-      this.sharedWorker.ping()
+      this.broadcastChannel.ping()
   }
 }

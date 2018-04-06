@@ -6,7 +6,14 @@ import {DevExtremeModule} from "devextreme-angular";
 import {WizardListAuthorsComponent} from "./wizard-list-authors/wizard-list-authors.component";
 import {WizardListEditorsComponent} from "./wizard-list-editors/wizard-list-editors.component";
 import {CommonModule} from "@angular/common";
-import {SharedWorkerService} from "./services/shared-worker";
+import {BroadcastChannelApi} from "./services/broadcast-channel-api";
+import {BookReviver} from "./services/reviver/library/bookReviver";
+import {AuthorReviver} from "./services/reviver/library/authorReviver";
+import {AuthorsReviver} from "./services/reviver/library/authorsReviver";
+import {EditorsReviver} from "./services/reviver/library/editorsReviver";
+import {EditorReviver} from "./services/reviver/library/editorReviver";
+import {JobReviver} from "./services/reviver/library/jobReviver";
+import {SerieReviver} from "./services/reviver/library/serieReviver";
 
 @NgModule({
     imports: [
@@ -26,9 +33,16 @@ import {SharedWorkerService} from "./services/shared-worker";
         WizardSumupComponent
     ],
     providers: [
-        SharedWorkerService,
+        BroadcastChannelApi,
         WizardRouting,
-        WizardBook
+        WizardBook,
+        AuthorReviver,
+        AuthorsReviver,
+        BookReviver,
+        EditorReviver,
+        EditorsReviver,
+        JobReviver,
+        SerieReviver,
     ]
 })
 export class SharedModule {

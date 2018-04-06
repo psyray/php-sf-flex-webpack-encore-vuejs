@@ -1,6 +1,8 @@
-import {Author} from "../../entities/library/author"
+import {Injectable} from "@angular/core";
+import {Author} from "../../../../../entities/library/author"
 import {ItemAbstractReviver} from "@rebolon/json-reviver/src";
 
+@Injectable()
 export class AuthorReviver extends ItemAbstractReviver
 {
     /**

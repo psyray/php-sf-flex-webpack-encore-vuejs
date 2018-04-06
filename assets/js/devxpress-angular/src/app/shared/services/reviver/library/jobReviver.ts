@@ -1,6 +1,8 @@
-import {Job} from "../../entities/library/job"
+import {Job} from "../../../../../entities/library/job"
 import {ItemAbstractReviver} from "@rebolon/json-reviver/src"
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class JobReviver extends ItemAbstractReviver
 {
     /**

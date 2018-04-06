@@ -1,7 +1,9 @@
-import {Editors} from "../../entities/library/editors"
+import {Editors} from "../../../../../entities/library/editors"
 import {EditorReviver} from './editorReviver'
 import {ListAbstractReviver} from "@rebolon/json-reviver/src"
+import {Injectable} from "@angular/core";
 
+@Injectable()
 export class EditorsReviver extends ListAbstractReviver
 {
     /**

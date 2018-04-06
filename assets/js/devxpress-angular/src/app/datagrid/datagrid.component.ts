@@ -4,10 +4,9 @@ import CustomStore from 'devextreme/data/custom_store';
 import {BookModel} from "../../models/book.model";
 import 'rxjs/add/operator/toPromise';
 import { apiConfig } from '../../../../lib/config'
-import {ListAbstractReviver} from '@rebolon/json-reviver/src'
 import {DxDataGridComponent} from "devextreme-angular";
-import {SharedWorkerService} from "../shared/services/shared-worker";
 import notify from 'devextreme/ui/notify';
+import {BroadcastChannelApi} from "../shared/services/broadcast-channel-api";
 
 @Component({
   selector: 'my-datagrid',
@@ -30,11 +29,10 @@ export class DatagridComponent implements OnInit {
   public apiConfig
   public dataSource: any = {}
 
-  constructor(private api: ApiService, private sharedWorker: SharedWorkerService) {
+  constructor(private api: ApiService, private broadcastChannel: BroadcastChannelApi) {
       this.apiConfig = apiConfig
 
-      this.sharedWorker.message.subscribe(message => {
-          debugger
+      this.broadcastChannel.message.subscribe(message => {
           notify("data received from second screen", "info", 10000);
       })
 
